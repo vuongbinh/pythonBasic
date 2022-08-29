@@ -40,10 +40,44 @@ def count_emma(statement):
         count += statement[i: i + 4] == 'Emma'
     return count
 
+def printTriangle(rows):
+    for i in range(rows):
+        for j in range(i):
+            print(i, end=' ')
+        print('')
+
+def isPalindromeNumber(numb):
+    print(str(numb))
+    print(len(str(numb)))
+    original = numb
+    reversed = 0
+    for i in range(len(str(numb))):
+        temp = numb % 10
+        numb = numb // 10
+        reversed = (reversed * 10) + temp
+    if reversed == original:
+        print("Yes, this is Palindrome number")
+        return True
+    else:
+        print('No, this is not Palindrome number')
+        return False
+
+def mergeListByCondition(list1, list2):
+    finalList = []
+    for index in range(len(list1)):
+        if list1[index] % 2 != 0:
+            finalList.append(list1[index])
+    for index in range(len(list2)):
+        if list2[index] % 2 == 0:
+            finalList.append(list2[index])
+    finalList.sort()
+    print(finalList)
+
 def main():
-    str = "Emma is Emma good  Emma developer. Emma is a writer"
-    count = count_emma(str)
-    print(count)
+    list1 = [10, 20, 25, 30, 35]
+    list2 = [40, 45, 60, 75, 90]
+    mergeListByCondition(list1,list2)
+
 
 ## Main function
 if __name__ == "__main__":
