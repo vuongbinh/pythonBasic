@@ -90,9 +90,29 @@ def calculateIncomeTax(amount):
         totalTax = 0
     return totalTax
 
+def multipliTable(nums):
+    for i in range(nums):
+        for j in range(nums):
+            print((i+1)*(j+1), end=' ')
+        print('')
+
+def printDownwardSquarePyramid(numsOfRows):
+    while numsOfRows > 0:
+        for j in range(numsOfRows):
+            print('*',end=' ')
+        print('\n')
+        numsOfRows -= 1
+
+def exponent(base, exp):
+    result = 1
+    for idx in range(exp):
+        result = result*base
+    return result
+
 def main():
-    totalTax = calculateIncomeTax(20000)
-    print(totalTax)
+    base = 5
+    exp = 4
+    print(base, ' raises to the power of ', exp, ':', exponent(base,exp))
 
 ## Main function
 if __name__ == "__main__":
