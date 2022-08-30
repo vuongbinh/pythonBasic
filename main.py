@@ -73,11 +73,26 @@ def mergeListByCondition(list1, list2):
     finalList.sort()
     print(finalList)
 
-def main():
-    list1 = [10, 20, 25, 30, 35]
-    list2 = [40, 45, 60, 75, 90]
-    mergeListByCondition(list1,list2)
+def reverseNumber(numb):
+    extract = []
+    for idx in range(len(str(numb))):
+        temp = numb % 10
+        extract.append(temp)
+        numb = numb // 10
+    return extract
 
+def calculateIncomeTax(amount):
+    if amount > 20000:
+        totalTax = (10000 * 10)/100 + ((amount - 20000) * 20) / 100
+    if amount <= 20000:
+        totalTax = (10000 * 10) / 100
+    if amount <= 10000:
+        totalTax = 0
+    return totalTax
+
+def main():
+    totalTax = calculateIncomeTax(20000)
+    print(totalTax)
 
 ## Main function
 if __name__ == "__main__":
