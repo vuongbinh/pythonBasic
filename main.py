@@ -13,13 +13,13 @@ def iterationSum():
         print("Current Number", i, "Previous Number", previous_Number, "Sum: ", i + previous_Number)
 
 
-def printEvenValue(str):
-    for i in range(0, len(str)):
-        if (i % 2 == 0): print(str[i])
+def printEvenValue(strs):
+    for i in range(0, len(strs)):
+        if i % 2 == 0: print(strs[i])
 
 
-def removeChars(str, nums):
-    result = str[nums: len(str)]
+def removeChars(strs, nums):
+    result = strs[nums: len(strs)]
     return result
 
 
@@ -36,8 +36,8 @@ def isDivisibleForFive(arr):
             print(item)
 
 
-def isAppeared(str, value):
-    print(str.count(value))
+def isAppeared(strs, value):
+    print(strs.count(value))
 
 
 def count_emma(statement):
@@ -59,12 +59,12 @@ def isPalindromeNumber(numb):
     print(str(numb))
     print(len(str(numb)))
     original = numb
-    reversed = 0
+    reverse = 0
     for i in range(len(str(numb))):
         temp = numb % 10
         numb = numb // 10
-        reversed = (reversed * 10) + temp
-    if reversed == original:
+        reverse = (reverse * 10) + temp
+    if reverse == original:
         print("Yes, this is Palindrome number")
         return True
     else:
@@ -94,7 +94,7 @@ def reverseNumber(numb):
 
 
 def calculateIncomeTax(amount):
-    global totalTax
+    totalTax = 0
     if amount > 20000:
         totalTax = (10000 * 10) / 100 + ((amount - 20000) * 20) / 100
     if amount <= 20000:
@@ -111,12 +111,12 @@ def multipliTable(nums):
         print('')
 
 
-def printDownwardSquarePyramid(numsOfRows):
-    while numsOfRows > 0:
-        for j in range(numsOfRows):
+def printDownwardSquarePyramid(rows):
+    while rows > 0:
+        for j in range(rows):
             print('*', end=' ')
         print('\n')
-        numsOfRows -= 1
+        rows -= 1
 
 
 def exponent(base, exp):
@@ -126,7 +126,7 @@ def exponent(base, exp):
     return result
 
 
-def romanToInt(str):
+def romanToInt(strs):
     values = {
         "I": 1,
         "V": 5,
@@ -138,10 +138,10 @@ def romanToInt(str):
     }
     total = 0
     idx = 0
-    while idx < len(str):
-        char1 = values[str[idx]]
-        if idx + 1 < len(str):
-            char2 = values[str[idx + 1]]
+    while idx < len(strs):
+        char1 = values[strs[idx]]
+        if idx + 1 < len(strs):
+            char2 = values[strs[idx + 1]]
             if char1 >= char2:
                 total += char1
                 idx += 1
@@ -170,9 +170,73 @@ def longestCommonPrefix(strs):
     return common_prefix
 
 
+def mergeListsSort(list1, list2):
+    listFinal = []
+    if len(list1) == 0:
+        listFinal = list2
+    if len(list2) == 0:
+        listFinal = list1
+    else:
+        if len(list1) < len(list2):
+            for i in list1:
+                listFinal = list2
+                listFinal.append(i)
+        else:
+            for i in list2:
+                listFinal = list1
+                listFinal.append(i)
+    listFinal.sort()
+    listFinal = set(listFinal)
+    return listFinal
+
+
+def maxProfit(prices):
+    maxProfit = 0
+    minPrice = prices[0]
+    for i in range(len(prices)):
+        profit = prices[i] - minPrice
+        maxProfit = max(profit, maxProfit)
+        minPrice = min(prices[i], minPrice)
+    return maxProfit
+
+
+def plusOne(digits):
+    result = []
+    num = 0
+    if len(digits) < 2:
+        num = digits[0]
+    else:
+        for i in range(len(digits)):
+            num = num * 10 + digits[i]
+    num += 1
+    while num > 0:
+        lastDigit = num % 10
+        num = num // 10
+        result.append(lastDigit)
+    return result[::-1]
+
+
+def searchInsert(nums: list[int], target: int):
+    if nums.__contains__(target):
+        index = nums.index(target)
+    else:
+        if target < nums[0]:
+            index = 0
+        for i in range(len(nums) - 1):
+            if nums[i] < target & target <= nums[i + 1]:
+                index = i + 1
+        if target > nums[len(nums) - 1]:
+            index = len(nums)
+    return index
+
+
+def lengthOfLastWord(s:str):
+    return len(s.strip().split(' ')[-1])
+
+
 def main():
-    strs = ["flower","flow","flight"]
-    print(longestCommonPrefix(strs))
+    s = "    fly me   to   the moon  "
+    print(lengthOfLastWord(s))
 
 
 ## Main function
