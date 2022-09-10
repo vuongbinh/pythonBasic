@@ -234,9 +234,31 @@ def lengthOfLastWord(s:str):
     return len(s.strip().split(' ')[-1])
 
 
+def climbStairs(n: int):
+    previoustStep = 0
+    currentStep = 1
+    for i in range(n):
+        temp = currentStep
+        currentStep = currentStep + previoustStep
+        previoustStep = temp
+    return currentStep
+
+def singleNumber(nums):
+    temp = set(nums)
+    singleNumber = 0
+    if len(nums) < 2:
+        return nums[0]
+    else:
+        for i in list(temp):
+            if nums.count(i) == 1:
+                singleNumber = i
+    return singleNumber
+
+
 def main():
-    s = "    fly me   to   the moon  "
-    print(lengthOfLastWord(s))
+    nums = [1]
+    print(singleNumber(nums))
+
 
 
 ## Main function
