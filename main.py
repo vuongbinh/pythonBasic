@@ -1,3 +1,6 @@
+from cmath import inf
+
+
 def multipleOrSum(num1, num2):
     product = num1 * num2
     if product <= 1000:
@@ -254,12 +257,38 @@ def singleNumber(nums):
                 singleNumber = i
     return singleNumber
 
+def majorityElement(nums):
+    setNums = set(nums)
+    majorityNum = -1
+    count = 0
+    for i in setNums:
+        if count < nums.count(i):
+            count = nums.count(i)
+            majorityNum = i
+    return majorityNum
+
+#nums[j] - nums[i]), such that 0 <= i < j < n and nums[i] < nums[j].
+def maximumDifference(nums):
+    result = -1
+    minNum = (inf)
+    for i in range(len(nums)):
+        if nums[i] < minNum:
+            minNum = nums[i]
+        elif result < nums[i] - minNum & nums[i] - minNum > 0:
+            result = nums[i] - minNum
+    return result
+def isHappy(n: int) -> bool:
+    i = 0
+    nums = []
+    while n > 0:
+        nums.append(n % 10)
+        n = n // 10
+        i += 1
+    return True
 
 def main():
-    nums = [1]
-    print(singleNumber(nums))
-
-
+    nums = [1,5,2,10]
+    print(maximumDifference(nums))
 
 ## Main function
 if __name__ == "__main__":
