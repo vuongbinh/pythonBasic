@@ -1,3 +1,6 @@
+from cmath import inf
+
+
 def multipleOrSum(num1, num2):
     product = num1 * num2
     if product <= 1000:
@@ -230,13 +233,93 @@ def searchInsert(nums: list[int], target: int):
     return index
 
 
-def lengthOfLastWord(s:str):
+def lengthOfLastWord(s: str):
     return len(s.strip().split(' ')[-1])
 
 
+def climbStairs(n: int):
+    previoustStep = 0
+    currentStep = 1
+    for i in range(n):
+        temp = currentStep
+        currentStep = currentStep + previoustStep
+        previoustStep = temp
+    return currentStep
+
+
+def singleNumber(nums):
+    temp = set(nums)
+    singleNumber = 0
+    if len(nums) < 2:
+        return nums[0]
+    else:
+        for i in list(temp):
+            if nums.count(i) == 1:
+                singleNumber = i
+    return singleNumber
+
+
+def majorityElement(nums):
+    setNums = set(nums)
+    majorityNum = -1
+    count = 0
+    for i in setNums:
+        if count < nums.count(i):
+            count = nums.count(i)
+            majorityNum = i
+    return majorityNum
+
+
+# nums[j] - nums[i]), such that 0 <= i < j < n and nums[i] < nums[j].
+def maximumDifference(nums):
+    result = -1
+    minNum = (inf)
+    for i in range(len(nums)):
+        if nums[i] < minNum:
+            minNum = nums[i]
+        elif result < nums[i] - minNum & nums[i] - minNum > 0:
+            result = nums[i] - minNum
+    return result
+
+
+def isHappy(n: int) -> bool:
+    def getNext(n):
+        total = 0
+        while n > 0:
+            total += n % 10
+            n // 10
+        return total
+
+
+
+def bagOfTokensScore(tokens: list[int], power: int) -> int:
+    score: int = 0
+    if len(tokens) < 1 or power < min(tokens):
+        return 0
+    else:
+        maxToken: int = max(tokens)
+        minToken: int = min(tokens)
+        while len(tokens) > 1:
+            if power > 0 and power >= minToken:
+                power -= minToken
+                score += 1
+                tokens.pop(tokens.index(minToken))
+                minToken = min(tokens)
+                continue
+            if score > 0 and len(tokens) > 1:
+                power += maxToken
+                score -= 1
+                tokens.pop(tokens.index(maxToken))
+                maxToken = max(tokens)
+                continue
+        if power >= tokens[0]:
+            score += 1
+    return score
+
+
 def main():
-    s = "    fly me   to   the moon  "
-    print(lengthOfLastWord(s))
+    nums = [100,200,300,400]
+    print(bagOfTokensScore(nums,200))
 
 
 ## Main function
