@@ -1,4 +1,4 @@
-from cmath import inf
+from cmath import inf, sqrt
 
 
 def multipleOrSum(num1, num2):
@@ -283,13 +283,34 @@ def maximumDifference(nums):
 
 
 def isHappy(n: int) -> bool:
-    def getNext(n):
-        total = 0
-        while n > 0:
-            total += n % 10
-            n // 10
-        return total
+    flag = n
 
+    def getNext(n):
+        nextNumber = 0
+        while n > 0:
+            if n % 10 != 0:
+                temp = n % 10
+                nextNumber += pow(temp, 2)
+                n = n // 10
+            else:
+                n = n // 10
+        return nextNumber
+
+    while n > 1:
+        n = getNext(n)
+        if n == 20: break
+    if n == 1:
+        return True
+    else:
+        return False
+
+
+def isHappy_2nd(self, n: int) -> bool:
+    seen = set()
+    while n not in seen:
+        seen.add(n)
+        n = sum([int(i) ** 2 for i in str(n)])
+    return n == 1
 
 
 def bagOfTokensScore(tokens: list[int], power: int) -> int:
@@ -317,9 +338,19 @@ def bagOfTokensScore(tokens: list[int], power: int) -> int:
     return score
 
 
+def containsDuplicate(nums: list[int]):
+    setNums = set(nums)
+    if len(setNums) != len(nums):
+        return True
+    return False
+
+
+def isPowerOfTwo(n: int) -> bool:
+
+
 def main():
-    nums = [100,200,300,400]
-    print(bagOfTokensScore(nums,200))
+    nums = 1
+    print(isPowerOfTwo(nums))
 
 
 ## Main function
